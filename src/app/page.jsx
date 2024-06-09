@@ -7,6 +7,7 @@ import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { API_URL } from "./config/config";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const tableData = jsonData;

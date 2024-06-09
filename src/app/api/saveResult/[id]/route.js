@@ -5,15 +5,13 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (request, { params }) => {
   const id = params.id;
-  console.log(id)
   const data = await request.json();
-  console.log(data)
   try {
     await connect();
 
     const updatedData = await itemModel.findOneAndUpdate(
       { code: id },
-      { itemValue: data.value },
+      { $inc: { itemValue: data.itemValue } },
       { new: true }
     );
 
