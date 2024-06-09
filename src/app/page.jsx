@@ -4,7 +4,6 @@ import Link from "next/link";
 import Form from "@/components/Form";
 import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
-import { saveResult } from "@/components/SaveResults";
 
 export default function Home() {
   const { result, isLoading, mutate } = FromDb(`getResults`);

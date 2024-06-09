@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
 import DataTable from "@/components/DataTable";
+import Loading from "@/components/Loading/Loading";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
@@ -28,7 +29,9 @@ const ScannerPage = () => {
   const minusHandler = (scannedCode) => {
     saveResult(scannedCode, -1, mutate, "Išimti");
   };
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="container mx-auto text-center">
       <h1>Brūkšninių kodų skaneris</h1>
