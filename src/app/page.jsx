@@ -23,8 +23,8 @@ export default function Home() {
       >
         Skenuoti
       </Link>
-      <button onClick={() => saveResult(1, mutate)}>cia test button</button>
-      <button onClick={() => saveResult(-1, mutate)}>-cia test button</button>
+      <button onClick={() => saveResult(1, mutate, "Pridėta")}>cia test button</button>
+      <button onClick={() => saveResult(-1, mutate, "Išimta")}>-cia test button</button>
 
       <Form />
     </main>

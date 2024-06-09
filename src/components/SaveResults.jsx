@@ -2,9 +2,9 @@ import { API_URL } from "@/app/config/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const saveResult = async (value, mutate) => {
+export const saveResult = async (scannedCode, value, mutate, text) => {
   try {
-    const response = await fetch(`${API_URL}/api/saveResult/95632656564556`, {
+    const response = await fetch(`${API_URL}/api/saveResult/${scannedCode}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export const saveResult = async (value, mutate) => {
       if (typeof mutate === "function") {
         mutate();
       }
-      toast.success("Pridėta");
+      toast.success(text);
       return response;
     } else {
       console.error("Failed to save the result.");
