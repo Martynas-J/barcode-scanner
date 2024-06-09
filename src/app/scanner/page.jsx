@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import ButtonComponent from "@/components/ButtonComponent";
 import Link from "next/link";
 import { FromDb } from "@/Functions/simpleFunctions";
+import { saveResult } from "@/components/SaveResults";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
