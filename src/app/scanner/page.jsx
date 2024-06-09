@@ -7,6 +7,7 @@ import ButtonComponent from "@/components/ButtonComponent";
 import Link from "next/link";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
+import DataTable from "@/components/DataTable";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
@@ -32,6 +33,7 @@ const ScannerPage = () => {
     <div className="container mx-auto text-center">
       <h1>Brūkšninių kodų skaneris</h1>
       <Link href="/#">Atgal</Link>
+      <DataTable data={result} />
       {!scannedCode && <BarcodeScanner onDetected={handleDetected} />}
       {scannedCode && (
         <div>
