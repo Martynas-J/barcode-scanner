@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^8.4.1",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "quagga": "^0.12.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "eslint": "^8",
