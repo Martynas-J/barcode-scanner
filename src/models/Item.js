@@ -2,30 +2,31 @@ import mongoose from "mongoose";
 
 const {Schema} = mongoose
 
-const playerSchema = new Schema({
-    playerName: {
+const itemSchema = new Schema({
+    printer: {
         type: String,
         unique: true,
         required: true,
     },
-    playerScore: {
+    itemName: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    itemValue: {
         type: Number, 
         required: true,
     },
-    level: {
-        type: Number, 
-        required: true,
-    },
-    help: {
+    code: {
         type: Number, 
         required: true,
     },
 }, {timestamps: true})
 
-let playerModel
+let itemModel
 try {
-    playerModel = mongoose.model('Player')
+    itemModel = mongoose.model('Item')
 } catch (error) {
-    playerModel = mongoose.model('Player', playerSchema)
+    itemModel = mongoose.model('Item', itemSchema)
 }
-export default playerModel
+export default itemModel
