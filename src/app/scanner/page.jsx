@@ -16,6 +16,9 @@ const ScannerPage = () => {
     const handleDetected = (code) => {
       setScannedCode(code);
     };
+    const addHandler = (scannedCode) => {
+      
+    };
   
     return (
       <div className='container mx-auto text-center'>
@@ -28,7 +31,7 @@ const ScannerPage = () => {
             <p>{scannedCode}</p>
             <h3>Veiksmai</h3>
             <div className='flex  gap-3 justify-center'>
-            <ButtonComponent>Pridėti</ButtonComponent>
+            <ButtonComponent onClick={()=>addHandler(scannedCode)}>Pridėti</ButtonComponent>
             <ButtonComponent>Išimti</ButtonComponent>
             </div>
           </div>

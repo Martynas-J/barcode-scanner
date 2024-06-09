@@ -1,0 +1,28 @@
+import { API_URL } from "@/app/config/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const saveResult = async (value, mutate) => {
+  try {
+    const response = await fetch(`${API_URL}/api/saveResult/95632656564556`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ itemValue: value }),
+    });
+
+    if (response.ok) {
+      if (typeof mutate === "function") {
+        mutate();
+      }
+      toast.success("Pridėta");
+      return response;
+    } else {
+      console.error("Failed to save the result.");
+      return response;
+    }
+  } catch (error) {
+    console.error("Error while saving the result:", error);
+  }
+};

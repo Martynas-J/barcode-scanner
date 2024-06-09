@@ -16,9 +16,8 @@ export const PATCH = async (request, { params }) => {
     );
 
     if (!updatedData) {
-      console.log("cia")
-      const newItem = new itemModel(data);
-      await newItem.save();
+      // const newItem = new itemModel(data);
+      // await newItem.save();
     }
 
     return new NextResponse(`This has been updated`, { status: 200 });
