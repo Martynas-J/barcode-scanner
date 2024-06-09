@@ -18,7 +18,7 @@ const ScannerPage = () => {
     return (
       <div>
         <h1>Brūkšninių kodų skaneris</h1>
-        <BarcodeScanner onDetected={handleDetected} />
+        {!scannedCode && <BarcodeScanner onDetected={handleDetected} />}
         {scannedCode && (
           <div>
             <h2>Nuskaitytas kodas:</h2>
