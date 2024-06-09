@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import ButtonComponent from '@/components/ButtonComponent';
+import Link from 'next/link';
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import('/src/components/BarcodeScanner'), { ssr: false });
@@ -19,6 +20,7 @@ const ScannerPage = () => {
     return (
       <div className='container mx-auto text-center'>
         <h1>Brūkšninių kodų skaneris</h1>
+        <Link href="/#">Atgal</Link>
         {!scannedCode && <BarcodeScanner onDetected={handleDetected} />}
         {scannedCode && (
           <div>
