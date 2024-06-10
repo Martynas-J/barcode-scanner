@@ -8,12 +8,12 @@ const NewAdd = () => {
     const code = searchParams.get('code');
     const onSubmit = (data) => {
         <p>{data.printer}</p>
-      };
+    };
     return (
         <div>
             <div>Nauja prekė</div>
             <p>Prekės kodas: {code}</p>
-            <Form onSubmit={onSubmit(data)}/>
+            <Form onSubmit={() => onSubmit(data)} />
         </div>
     );
 };
