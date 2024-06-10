@@ -2,14 +2,18 @@
 "use client";
 
 import React, { useState } from "react";
-
+import dynamic from "next/dynamic";
 import ButtonComponent from "@/components/ButtonComponent";
 import Link from "next/link";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
 import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/navigation";
-import { useScanDetector } from 'react-barcode-reader';
+
+// Dynamically import the BarcodeScanner to avoid server-side rendering issues
+const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
+  ssr: false,
+});
 
 const ScannerPage = () => {
   const router = useRouter();
@@ -20,54 +24,37 @@ const ScannerPage = () => {
   const handleDetected = (code) => {
     setScannedCode(code);
   };
-
   const addHandler = (scannedCode) => {
     saveResult(scannedCode, { itemValue: 1 }, mutate, "Pridėta");
   };
-
   const minusHandler = (scannedCode) => {
     saveResult(scannedCode, { itemValue: -1 }, mutate, "Išimta");
   };
-
   const addNewHandler = (scannedCode) => {
+    //saveResult(scannedCode, -1, mutate, "Nauja pridėta");
     router.push(`/newAdd?code=${encodeURIComponent(scannedCode)}`);
   };
-
-  useScanDetector({
-    onDetected: (result) => {
-      console.log('Detected:', result);
-      handleDetected(result);
-    },
-    onError: (err) => {
-      console.error('Detection error:', err);
-      setError("Nuskaitymo klaida: " + err.message);
-    },
-  });
-
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div className="container mx-auto text-center">
       <h1 className="text-2xl font-bold">Brūkšninių kodų skeneris</h1>
-      {!scannedCode && (
-        <div className="scanner-area">
-          <p>Nukreipkite brūkšninį kodą į skenavimo sritį</p>
-        </div>
-      )}
+      {/* <DataTable data={result} /> */}
+      {!scannedCode && <BarcodeScanner onDetected={handleDetected} />}
       {scannedCode && (
         <div>
           <h2>Nuskaitytas kodas:</h2>
           <p className="text-red-600">{scannedCode}</p>
           <h3 className="py-3 font-bold">Veiksmai:</h3>
-          <div className="flex gap-3 justify-center">
+          <div className="flex  gap-3 justify-center">
             <ButtonComponent onClick={() => addHandler(scannedCode)}>
               Pridėti
             </ButtonComponent>
             <ButtonComponent onClick={() => minusHandler(scannedCode)}>Išimti</ButtonComponent>
             <ButtonComponent onClick={() => addNewHandler(scannedCode)}>Nauja</ButtonComponent>
           </div>
+
         </div>
       )}
       {error && (
@@ -76,9 +63,7 @@ const ScannerPage = () => {
           <p>{error}</p>
         </div>
       )}
-      <div className="mt-10">
-        <Link className="text-center" href="/#">Atgal</Link>
-      </div>
+      <div className="mt-10"><Link className=" text-center  " href="/#">Atgal</Link></div>
     </div>
   );
 };
