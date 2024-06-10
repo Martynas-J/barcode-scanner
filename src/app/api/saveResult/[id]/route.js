@@ -5,20 +5,20 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (request, { params }) => {
   const id = params.id;
-  console.log()
   const data = await request.json();
-  console.log("visa: " + data)
+  let updatedData = ""
   try {
     await connect();
+    if (!data.itemName) {
+      updatedData = await itemModel.findOneAndUpdate(
+        { code: id },
+        { $inc: { itemValue: data.itemValue } },
+        { new: true }
+      );
+    }
 
-    const updatedData = await itemModel.findOneAndUpdate(
-      { code: id },
-      { $inc: { itemValue: data.itemValue } },
-      { new: true }
-    );
 
     if (!updatedData) {
-      console.log(data)
       // if (!data.itemName) {
       //   return new NextResponse(`This has been updated`, { status: 400 });
       // }

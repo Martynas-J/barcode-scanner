@@ -35,6 +35,7 @@ const Form = ({ onSubmit }) => {
           type="text"
           id="printer"
           value={printer}
+          required
           onChange={(e) => setPrinter(e.target.value)}
           className={inputClass}
         />
@@ -47,6 +48,7 @@ const Form = ({ onSubmit }) => {
           type="text"
           id="name"
           value={name}
+          required
           onChange={(e) => setName(e.target.value)}
           className={inputClass}
         />
@@ -59,6 +61,7 @@ const Form = ({ onSubmit }) => {
           type="number"
           id="value"
           value={value}
+          required
           onChange={(e) => setValue(e.target.value)}
           className={inputClass}
         />
