@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (request, { params }) => {
   const id = params.id;
+  console.log()
   const data = await request.json();
   console.log("visa: " + data)
   try {
@@ -13,7 +14,6 @@ export const PATCH = async (request, { params }) => {
     const updatedData = await itemModel.findOneAndUpdate(
       { code: id },
       { $inc: { itemValue: data.itemValue } },
-      // { itemName: data.itemName },
       { new: true }
     );
 
@@ -22,7 +22,7 @@ export const PATCH = async (request, { params }) => {
       // if (!data.itemName) {
       //   return new NextResponse(`This has been updated`, { status: 400 });
       // }
-      const newItem = new itemModel(data);
+      const newItem = new itemModel({ code: code, ...data });
       await newItem.save();
     }
 
