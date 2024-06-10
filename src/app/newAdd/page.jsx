@@ -13,7 +13,7 @@ const NewAdd = () => {
     const onSubmit = (data) => {
         // alert(`Printer: ${data.printer}, Name: ${data.name}, Value: ${data.value}`);
         console.log(data)
-        saveResult(code,{printer, itemName:data.name, itemValue:data.value}, mutate, "Pridėta nauja");
+        saveResult(code,{printer:data.printer, itemName:data.name, itemValue:data.value}, mutate, "Pridėta nauja");
     };
     if (isLoading) {
         return <Loading />;
