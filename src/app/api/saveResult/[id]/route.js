@@ -17,6 +17,7 @@ export const PATCH = async (request, { params }) => {
     );
 
     if (!updatedData) {
+      console.log(data)
       if (!data.itemName) {
         return new NextResponse(`This has been updated`, { status: 400 });
       }
