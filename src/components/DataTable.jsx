@@ -34,7 +34,7 @@ const DataTable = ({ data }) => {
                   {index === 2 ? (
                     `${value} vnt.`
                   ) : (
-                    <span className={value < 3 ? 'text-red-500 font-bold' : ''}>
+                    <span className={parseInt(value) < 3 ? 'text-red-500 font-bold' : ''}>
                       {value}
                     </span>
                   )}                </td>
