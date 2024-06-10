@@ -31,8 +31,13 @@ const DataTable = ({ data }) => {
                   key={index}
                   className="py-2 px-4 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                 >
-                  {index === 2 ? `${value} vnt.` : <span className={`${value < 3 && 'text-red-500 font-bold'}`}>{value}</span>}
-                </td>
+                  {index === 2 ? (
+                    `${value} vnt.`
+                  ) : (
+                    <span className={value < 3 ? 'text-red-500 font-bold' : ''}>
+                      {value}
+                    </span>
+                  )}                </td>
               ))}
             </tr>
           ))}
