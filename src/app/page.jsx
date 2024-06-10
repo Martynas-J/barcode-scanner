@@ -11,16 +11,16 @@ export default function Home() {
   const { status } = useSession();
   const router = useRouter();
   const { result, isLoading, mutate } = FromDb(`getResults`);
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router?.push("/dashboard/login");
+    }
+  }, [status, router]);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  useEffect(() => {
-    if (session.status === "unauthenticated") {
-      router?.push("/dashboard/login");
-    }
-  }, [session.status, router]);
 
   return (
     <main className="flex  flex-col items-center gap-5 pt-5">
