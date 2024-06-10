@@ -9,7 +9,7 @@ import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
 import DataTable from "@/components/DataTable";
 import Loading from "@/components/Loading/Loading";
-import  { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {

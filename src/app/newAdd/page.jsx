@@ -1,6 +1,6 @@
 "use client"
 import Form from '@/components/Form'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 const NewAdd = () => {
