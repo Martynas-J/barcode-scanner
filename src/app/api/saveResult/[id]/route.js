@@ -12,14 +12,16 @@ export const PATCH = async (request, { params }) => {
     const updatedData = await itemModel.findOneAndUpdate(
       { code: id },
       { $inc: { itemValue: data.itemValue } },
-      { itemName: data.itemName },
+      // { itemName: data.itemName },
       { new: true }
     );
 
     if (!updatedData) {
-      return new NextResponse(`This has been updated`, { status: 400 });
-      // const newItem = new itemModel(data);
-      // await newItem.save();
+      if (!data.itemName) {
+        return new NextResponse(`This has been updated`, { status: 400 });
+      }
+     const newItem = new itemModel(data);
+      await newItem.save();
     }
 
     return new NextResponse(`This has been updated`, { status: 200 });
