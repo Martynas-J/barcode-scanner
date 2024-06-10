@@ -1,7 +1,7 @@
 "use client"
-import Form from '@/components/Form'
 import { useSearchParams } from 'next/navigation';
-import React from 'react'
+import Form from '@/components/Form';
+import React, { Suspense } from 'react';
 
 const NewAdd = () => {
     const searchParams = useSearchParams();
@@ -13,7 +13,13 @@ const NewAdd = () => {
             <p>Received value: {code}</p>
             <Form />
         </div>
-    )
-}
+    );
+};
 
-export default NewAdd
+const NewAddPage = () => (
+    <Suspense fallback={<div>Loading...</div>}>
+        <NewAdd />
+    </Suspense>
+);
+
+export default NewAddPage;
