@@ -4,7 +4,7 @@ import { TABLEHEADER } from '@/config/config';
 import React from 'react';
 
 const DataTable = ({ data }) => {
-  data.sort((a, b) => a.itemValue - b.itemValue);
+  data?.sort((a, b) => a.itemValue - b.itemValue);
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
@@ -21,7 +21,7 @@ const DataTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {data?.map((item) => (
             <tr
               key={item.code}
               className={`${item.itemValue < 1 ? "bg-green-300":"even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800"}`}
