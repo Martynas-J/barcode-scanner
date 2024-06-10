@@ -1,7 +1,7 @@
 import connect from "@/app/utils/db";
 import itemModel from "@/models/Item";
 import { NextResponse } from "next/server";
- // Įsitikinkite, kad tinkamai importuojate savo Mongoose modelį
+// Įsitikinkite, kad tinkamai importuojate savo Mongoose modelį
 
 export const PATCH = async (request, { params }) => {
   const id = params.id;
@@ -12,6 +12,7 @@ export const PATCH = async (request, { params }) => {
     const updatedData = await itemModel.findOneAndUpdate(
       { code: id },
       { $inc: { itemValue: data.itemValue } },
+      { itemName: data.itemName },
       { new: true }
     );
 

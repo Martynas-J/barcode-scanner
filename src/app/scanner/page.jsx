@@ -26,10 +26,10 @@ const ScannerPage = () => {
     setScannedCode(code);
   };
   const addHandler = (scannedCode) => {
-    saveResult(scannedCode, 1, mutate, "Pridėta");
+    saveResult(scannedCode, { itemValue: 1 }, mutate, "Pridėta");
   };
   const minusHandler = (scannedCode) => {
-    saveResult(scannedCode, -1, mutate, "Išimta");
+    saveResult(scannedCode, { itemValue: -1 }, mutate, "Išimta");
   };
   const addNewHandler = (scannedCode) => {
     //saveResult(scannedCode, -1, mutate, "Nauja pridėta");
