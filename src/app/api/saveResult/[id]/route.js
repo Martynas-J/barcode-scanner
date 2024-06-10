@@ -19,9 +19,9 @@ export const PATCH = async (request, { params }) => {
 
 
     if (!updatedData) {
-      // if (!data.itemName) {
-      //   return new NextResponse(`This has been updated`, { status: 400 });
-      // }
+      if (!data.itemName) {
+        return new NextResponse(`This has been updated`, { status: 400 });
+      }
       const newItem = new itemModel({ code: id, ...data });
       await newItem.save();
     }
