@@ -21,7 +21,7 @@ const Form = ({ onSubmit }) => {
   const buttonClass = "w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100";
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4 text-center">
+    <form onSubmit={handleSubmit} className="mt-4 text-center flex flex-col gap-4">
 
       <div className="mb-4">
         <label htmlFor="printer" className={labelClass}>
