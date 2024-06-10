@@ -7,13 +7,14 @@ const NewAdd = () => {
     const searchParams = useSearchParams();
     const code = searchParams.get('code');
     const onSubmit = (data) => {
+        alert(`Printer: ${data.printer}, Name: ${data.name}, Value: ${data.value}`);
         <p>{data.printer}</p>
     };
     return (
         <div>
             <div>Nauja prekė</div>
             <p>Prekės kodas: {code}</p>
-            <Form onSubmit={() => onSubmit(data)} />
+            <Form onSubmit={onSubmit} />
         </div>
     );
 };
