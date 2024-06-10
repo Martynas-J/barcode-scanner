@@ -1,7 +1,6 @@
 "use client";
 import DataTable from "@/components/DataTable";
 import Link from "next/link";
-import Form from "@/components/Form";
 import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { signOut, useSession } from "next-auth/react";
