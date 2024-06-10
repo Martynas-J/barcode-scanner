@@ -4,14 +4,24 @@ import Link from "next/link";
 import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const { status } = useSession();
+  const router = useRouter();
   const { result, isLoading, mutate } = FromDb(`getResults`);
 
   if (isLoading) {
     return <Loading />;
   }
+
+  useEffect(() => {
+    if (session.status === "unauthenticated") {
+      router?.push("/dashboard/login");
+    }
+  }, [session.status, router]);
+
   return (
     <main className="flex  flex-col items-center gap-5 pt-5">
       <h1 className="text-2xl font-bold">Esamos prekės</h1>
