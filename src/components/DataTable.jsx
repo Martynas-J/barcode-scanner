@@ -4,7 +4,7 @@ import React from 'react';
 
 const DataTable = ({ data }) => {
   const headers = ['Spauzdintuvas', 'Prekė', 'Likutis'];
-
+  data.sort((a, b) => a.value - b.value);
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
