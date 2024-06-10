@@ -16,6 +16,7 @@ export const PATCH = async (request, { params }) => {
     );
 
     if (!updatedData) {
+      return new NextResponse(`This has been updated`, { status: 400 });
       // const newItem = new itemModel(data);
       // await newItem.save();
     }

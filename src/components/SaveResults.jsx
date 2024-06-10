@@ -19,6 +19,7 @@ export const saveResult = async (scannedCode, value, mutate, text) => {
       toast.success(text);
       return response;
     } else {
+      toast.success("tokios prekės nėra");
       console.error("Failed to save the result.");
       return response;
     }
