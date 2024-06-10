@@ -5,6 +5,7 @@ import React from 'react';
 
 const DataTable = ({ data }) => {
   data.sort((a, b) => a.itemValue - b.itemValue);
+  console.log(data)
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
