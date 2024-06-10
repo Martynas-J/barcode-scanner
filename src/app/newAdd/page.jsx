@@ -1,11 +1,11 @@
 "use client"
 import Form from '@/components/Form'
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import React from 'react'
 
 const NewAdd = () => {
-    const router = useRouter();
-    const { code } = router.query;
+    const searchParams = useSearchParams();
+    const code = searchParams.get('code');
 
     return (
         <div>
