@@ -1,4 +1,4 @@
-import { API_URL } from "@/app/config/config";
+import { API_URL } from "@/config/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,7 +19,7 @@ export const saveResult = async (scannedCode, value, mutate, text) => {
       toast.success(text);
       return response;
     } else {
-      toast.success("tokios prekės nėra");
+      toast.error("tokios prekės nėra");
       console.error("Failed to save the result.");
       return response;
     }

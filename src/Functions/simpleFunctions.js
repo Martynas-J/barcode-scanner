@@ -1,6 +1,6 @@
 "use client"
 
-import { API_URL } from "@/app/config/config";
+import { API_URL } from "@/config/config";
 import useSWR from "swr";
 
   export const FromDb = (link) => {

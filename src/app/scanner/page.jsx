@@ -9,6 +9,7 @@ import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
 import DataTable from "@/components/DataTable";
 import Loading from "@/components/Loading/Loading";
+import  { useRouter } from "next/router";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
@@ -16,6 +17,7 @@ const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
 });
 
 const ScannerPage = () => {
+  const router = useRouter();
   const [scannedCode, setScannedCode] = useState("");
   const [error, setError] = useState("");
   const { result, isLoading, mutate } = FromDb(`getResults`);
@@ -27,7 +29,11 @@ const ScannerPage = () => {
     saveResult(scannedCode, 1, mutate, "Pridėta");
   };
   const minusHandler = (scannedCode) => {
-    saveResult(scannedCode, -1, mutate, "Išimti");
+    saveResult(scannedCode, -1, mutate, "Išimta");
+  };
+  const addNewHandler = (scannedCode) => {
+    //saveResult(scannedCode, -1, mutate, "Nauja pridėta");
+    router.push(`/newAdd?Code=${encodeURIComponent(scannedCode)}`);
   };
   if (isLoading) {
     return <Loading />;
@@ -48,6 +54,7 @@ const ScannerPage = () => {
               Pridėti
             </ButtonComponent>
             <ButtonComponent onClick={() => minusHandler(scannedCode)}>Išimti</ButtonComponent>
+            <ButtonComponent onClick={() => addNewHandler(scannedCode)}>Nauja</ButtonComponent>
           </div>
         </div>
       )}

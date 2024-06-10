@@ -1,4 +1,4 @@
-import { API_URL } from "@/app/config/config";
+import { API_URL } from "@/config/config";
 
 export const updateResultData = async (resultData, toRoute, methods = "PATCH")  => {
   const { code} = resultData;
