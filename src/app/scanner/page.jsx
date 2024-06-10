@@ -64,7 +64,7 @@ const ScannerPage = () => {
           <p>{error}</p>
         </div>
       )}
-      <Link className=" text-center pt-10 " href="/#">Atgal</Link>
+      <Link className=" text-center mt-10 " href="/#">Atgal</Link>
     </div>
   );
 };
