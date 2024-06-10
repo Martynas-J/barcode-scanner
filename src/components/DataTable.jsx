@@ -1,16 +1,16 @@
 // components/DataTable.js
 
+import { TABLEHEADER } from '@/config/config';
 import React from 'react';
 
 const DataTable = ({ data }) => {
-  const headers = ['Spauzdintuvas', 'Prekė', 'Likutis'];
   data.sort((a, b) => a.itemValue - b.itemValue);
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
         <thead>
           <tr>
-            {headers.map((header) => (
+            {TABLEHEADER.map((header) => (
               <th
                 key={header}
                 className="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"

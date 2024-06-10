@@ -7,7 +7,6 @@ import ButtonComponent from "@/components/ButtonComponent";
 import Link from "next/link";
 import { FromDb } from "@/Functions/simpleFunctions";
 import { saveResult } from "@/components/SaveResults";
-import DataTable from "@/components/DataTable";
 import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/navigation";
 
