@@ -1,9 +1,8 @@
 "use client"
-import { signOut, useSession } from 'next-auth/react';
+
 import React, { useState } from 'react';
 
 const Form = ({ onSubmit }) => {
-  const { status } = useSession();
   const [printer, setPrinter] = useState('');
   const [name, setName] = useState('');
   const [value, setValue] = useState('');
@@ -21,12 +20,8 @@ const Form = ({ onSubmit }) => {
   const buttonClass = "w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100";
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
-      {status === "authenticated" && (
-        <button onClick={signOut} className="hover:text-red-500 pt-5">
-          Atsijungti
-        </button>
-      )}
+    <form onSubmit={handleSubmit} className="mt-4 text-center">
+
       <div className="mb-4">
         <label htmlFor="printer" className={labelClass}>
           Spausdintuvas

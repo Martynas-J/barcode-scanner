@@ -4,8 +4,10 @@ import Link from "next/link";
 import Form from "@/components/Form";
 import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { status } = useSession();
   const { result, isLoading, mutate } = FromDb(`getResults`);
 
   if (isLoading) {
@@ -22,6 +24,11 @@ export default function Home() {
       >
         Skenuoti
       </Link>
+      {status === "authenticated" && (
+        <button onClick={signOut} className="hover:text-red-500 pt-5">
+          Atsijungti
+        </button>
+      )}
     </main>
   );
 }
