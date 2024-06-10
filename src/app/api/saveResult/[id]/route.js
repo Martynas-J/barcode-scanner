@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 export const PATCH = async (request, { params }) => {
   const id = params.id;
   const data = await request.json();
+  console.log("visa: " + data)
   try {
     await connect();
 
@@ -18,10 +19,10 @@ export const PATCH = async (request, { params }) => {
 
     if (!updatedData) {
       console.log(data)
-      if (!data.itemName) {
-        return new NextResponse(`This has been updated`, { status: 400 });
-      }
-     const newItem = new itemModel(data);
+      // if (!data.itemName) {
+      //   return new NextResponse(`This has been updated`, { status: 400 });
+      // }
+      const newItem = new itemModel(data);
       await newItem.save();
     }
 
