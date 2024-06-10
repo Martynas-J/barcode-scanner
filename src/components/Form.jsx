@@ -65,7 +65,7 @@ const Form = ({ onSubmit }) => {
       <button type="submit" className={buttonClass}>
         Pridėti
       </button>
-      <Link className=" text-center pt-2 " href="/#">Atgal</Link>
+      <Link className=" text-center pt-10 " href="/#">Atgal</Link>
     </form>
 
   );
