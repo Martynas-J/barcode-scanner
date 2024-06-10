@@ -26,18 +26,13 @@ const DataTable = ({ data }) => {
               key={item.code}
               className="even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800"
             >
-              {Object.values(item).slice(1, 4).map((value, index) => (
+              {Object.values(item).slice(1, 4).map((value, index)  => (
                 <td
                   key={index}
                   className="py-2 px-4 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                 >
-                  {index === 2 ? (
-                    `${value} vnt.`
-                  ) : (
-                    <span className={parseInt(value) < 3 ? 'text-red-500 font-bold' : ''}>
-                      {value}
-                    </span>
-                  )}                </td>
+                  {index === 2 ? <span className={`${value < 3 && 'text-red-500 font-bold'}`}>{`${value} vnt.`}</span> : value}
+                </td>
               ))}
             </tr>
           ))}
