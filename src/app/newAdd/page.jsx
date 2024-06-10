@@ -4,6 +4,7 @@ import Form from '@/components/Form';
 import React, { Suspense } from 'react';
 import { FromDb } from '@/Functions/simpleFunctions';
 import Loading from '@/components/Loading/Loading';
+import { saveResult } from '@/components/SaveResults';
 
 const NewAdd = () => {
     const { result, isLoading, mutate } = FromDb(`getResults`);
@@ -11,7 +12,7 @@ const NewAdd = () => {
     const code = searchParams.get('code');
     const onSubmit = (data) => {
         // alert(`Printer: ${data.printer}, Name: ${data.name}, Value: ${data.value}`);
-        saveResult(code, { itemValue: -1 }, mutate, "Pridėta nauja");
+        saveResult(code, data, mutate, "Pridėta nauja");
     };
     if (isLoading) {
         return <Loading />;
