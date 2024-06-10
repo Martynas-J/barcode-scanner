@@ -24,7 +24,7 @@ const DataTable = ({ data }) => {
           {data.map((item) => (
             <tr
               key={item.code}
-              className={`${item[3].itemValue < 1 ? "bg-green-300":""}even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
+              className={`${item.itemValue < 1 ? "bg-green-300":""}even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
             >
               {Object.values(item).slice(1, 4).map((value, index)  => (
                 <td
