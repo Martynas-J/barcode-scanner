@@ -33,7 +33,7 @@ const ScannerPage = () => {
   };
   const addNewHandler = (scannedCode) => {
     //saveResult(scannedCode, -1, mutate, "Nauja pridėta");
-    router.push(`/newAdd?Code=${encodeURIComponent(scannedCode)}`);
+    router.push(`/newAdd?code=${encodeURIComponent(scannedCode)}`);
   };
   if (isLoading) {
     return <Loading />;
