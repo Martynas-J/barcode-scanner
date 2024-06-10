@@ -4,7 +4,7 @@ import Link from "next/link";
 import Form from "@/components/Form";
 import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Home() {
   const { status } = useSession();
