@@ -15,22 +15,23 @@ const BarcodeScanner = ({ onDetected }) => {
           constraints: {
             width: 640,
             height: 480,
-            facingMode: 'environment', // Arba 'user' priekinei kamerai
+            facingMode: 'environment', // Use 'user' for front camera
           },
         },
         locator: {
-          patchSize: 'medium',
+          patchSize: 'large', // Options: 'x-small', 'small', 'medium', 'large', 'x-large'
           halfSample: true,
         },
-        numOfWorkers: navigator.hardwareConcurrency,
+        numOfWorkers: navigator.hardwareConcurrency || 4,
         decoder: {
-          readers: ['code_128_reader', 'ean_reader', 'ean_8_reader'],
+          readers: ['code_128_reader', 'ean_reader', 'ean_8_reader', 'upc_reader'],
+          multiple: false, // Set to true if you expect to scan multiple barcodes at once
         },
         locate: true,
       },
       (err) => {
         if (err) {
-          console.error('Quagga inicializacija nepavyko:', err);
+          console.error('Quagga initialization failed:', err);
           return;
         }
         Quagga.start();
@@ -42,16 +43,15 @@ const BarcodeScanner = ({ onDetected }) => {
       const drawingCanvas = Quagga.canvas.dom.overlay;
 
       if (result) {
+        drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+
         if (result.boxes) {
-          drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
-          result.boxes
-            .filter((box) => box !== result.box)
-            .forEach((box) => {
-              Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
-                color: 'green',
-                lineWidth: 2,
-              });
+          result.boxes.forEach((box) => {
+            Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
+              color: 'green',
+              lineWidth: 2,
             });
+          });
         }
 
         if (result.box) {
@@ -73,7 +73,7 @@ const BarcodeScanner = ({ onDetected }) => {
     });
 
     Quagga.onDetected((data) => {
-      console.log('Detected:', data); // Derinimo informacija
+      console.log('Detected:', data); // Debug information
       onDetected(data.codeResult.code);
     });
 
