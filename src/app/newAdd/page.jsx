@@ -12,7 +12,6 @@ const NewAdd = () => {
     const code = searchParams.get('code');
     const onSubmit = (data) => {
         // alert(`Printer: ${data.printer}, Name: ${data.name}, Value: ${data.value}`);
-        console.log(data)
         saveResult(code,{printer:data.printer, itemName:data.name, itemValue:data.value}, mutate, "Pridėta nauja");
     };
     if (isLoading) {
