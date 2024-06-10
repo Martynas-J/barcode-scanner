@@ -6,16 +6,16 @@ import { NextResponse } from "next/server";
 export const PATCH = async (request, { params }) => {
   const id = params.id;
   const data = await request.json();
-  let updatedData = ""
+
   try {
     await connect();
-    if (!data.itemName) {
-      updatedData = await itemModel.findOneAndUpdate(
-        { code: id },
-        { $inc: { itemValue: data.itemValue } },
-        { new: true }
-      );
-    }
+
+    const updatedData = await itemModel.findOneAndUpdate(
+      { code: id },
+      { $inc: { itemValue: data.itemValue } },
+      { new: true }
+    );
+
 
 
     if (!updatedData) {
