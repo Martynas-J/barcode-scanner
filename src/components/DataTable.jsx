@@ -5,7 +5,6 @@ import React from 'react';
 
 const DataTable = ({ data }) => {
   data.sort((a, b) => a.itemValue - b.itemValue);
-  console.log(data)
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
@@ -25,7 +24,7 @@ const DataTable = ({ data }) => {
           {data.map((item) => (
             <tr
               key={item.code}
-              className={`${item.value < 1 ? "bg-green-300":""}even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
+              className={`${item.itemValue.value < 1 ? "bg-green-300":""}even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
             >
               {Object.values(item).slice(1, 4).map((value, index)  => (
                 <td
