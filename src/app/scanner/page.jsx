@@ -40,15 +40,15 @@ const ScannerPage = () => {
   }
   return (
     <div className="container mx-auto text-center">
-      <h1>Brūkšninių kodų skaneris</h1>
-      <Link href="/#">Atgal</Link>
-      <DataTable data={result} />
+      <h1 className="text-2xl font-bold">Brūkšninių kodų skeneris</h1>
+      <Link className="tex" href="/#">Atgal</Link>
+      {/* <DataTable data={result} /> */}
       {!scannedCode && <BarcodeScanner onDetected={handleDetected} />}
       {scannedCode && (
         <div>
           <h2>Nuskaitytas kodas:</h2>
-          <p>{scannedCode}</p>
-          <h3>Veiksmai</h3>
+          <p className="text-red-600">{scannedCode}</p>
+          <h3 className="py-3 font-bold">Veiksmai:</h3>
           <div className="flex  gap-3 justify-center">
             <ButtonComponent onClick={() => addHandler(scannedCode)}>
               Pridėti
@@ -56,6 +56,7 @@ const ScannerPage = () => {
             <ButtonComponent onClick={() => minusHandler(scannedCode)}>Išimti</ButtonComponent>
             <ButtonComponent onClick={() => addNewHandler(scannedCode)}>Nauja</ButtonComponent>
           </div>
+          <Link className="flex justify-end bg-gray-800 border-2 shadow-xl border-gray-800 text-white py-3 px-6 rounded-md font-bold  hover:bg-white hover:text-gray-800  focus:outline-none  focus:bg-white focus:text-gray-800" href="/#">Atgal</Link>
         </div>
       )}
       {error && (

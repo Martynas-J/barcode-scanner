@@ -19,7 +19,7 @@ const NewAdd = () => {
       }
     return (
         <div>
-            <div>Nauja prekė</div>
+            <div className='text-2xl font-bold'>Nauja prekė</div>
             <p>Prekės kodas: {code}</p>
             <Form onSubmit={onSubmit} />
         </div>

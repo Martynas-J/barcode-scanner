@@ -22,7 +22,6 @@ export default function Home() {
       >
         Skenuoti
       </Link>
-      <Form />
     </main>
   );
 }
