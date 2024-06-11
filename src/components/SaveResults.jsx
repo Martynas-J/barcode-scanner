@@ -19,7 +19,7 @@ export const saveResult = async (scannedCode, data, mutate, text) => {
       toast.success(text);
       return response;
     } else {
-      toast.error("tokios prekės nėra");
+      toast.error("Klaida pridedant");
       console.error("Failed to save the result.");
       return response;
     }
