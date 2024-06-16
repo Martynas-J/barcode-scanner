@@ -12,7 +12,7 @@ const NewAdd = () => {
     const code = searchParams.get('code');
     const onSubmit = (data) => {
         // alert(`Printer: ${data.printer}, Name: ${data.name}, Value: ${data.value}`);
-        saveResult(code,{printer:data.printer, itemName:data.name, itemValue:data.value}, mutate, "Pridėta nauja");
+        saveResult(code,{printer:data.printer, itemName:data.name, itemValue:data.value}, mutate, "Pridėta nauja", "Pavadinimas jau naudojamas");
     };
     if (isLoading) {
         return <Loading />;

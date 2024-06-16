@@ -2,7 +2,7 @@ import { API_URL } from "@/config/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const saveResult = async (scannedCode, data, mutate, text) => {
+export const saveResult = async (scannedCode, data, mutate, text, errorMsg) => {
   try {
     const response = await fetch(`${API_URL}/api/saveResult/${scannedCode}`, {
       method: "PATCH",
@@ -19,7 +19,7 @@ export const saveResult = async (scannedCode, data, mutate, text) => {
       toast.success(text);
       return response;
     } else {
-      toast.error("Klaida pridedant");
+      toast.error(errorMsg);
       console.error("Failed to save the result.");
       return response;
     }
