@@ -1,12 +1,21 @@
 "use client"
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, parsedData }) => {
+
   const [printer, setPrinter] = useState('');
   const [name, setName] = useState('');
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (parsedData) {
+      setPrinter(parsedData.printer || '');
+      setName(parsedData.itemName || '');
+      setValue(parsedData.itemValue !== undefined ? parsedData.itemValue.toString() : '');
+    }
+  }, [parsedData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,12 +72,12 @@ const Form = ({ onSubmit }) => {
         />
       </div>
       <button type="submit" className={buttonClass}>
-        Pridėti
+        {parsedData ? "Redaguoti" :"Pridėti"}
       </button>
       <Link className=" text-center mt-10 " href="/#">Atgal</Link>
     </form>
 
   );
 };
-
+ 
 export default Form;

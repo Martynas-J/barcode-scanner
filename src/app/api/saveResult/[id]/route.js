@@ -6,17 +6,28 @@ import { NextResponse } from "next/server";
 export const PATCH = async (request, { params }) => {
   const id = params.id;
   const data = await request.json();
-
   try {
     await connect();
+    let updateFields = {};
+    if (data.itemName) {
+      updateFields = {
+        itemValue: data.itemValue,
+        ...(data.itemName && { itemName: data.itemName }),
+        ...(data.printer && { printer: data.printer }),
+      };
+    } else {
+      updateFields = {
+        $inc: { itemValue: data.itemValue },
+        ...(data.itemName && { itemName: data.itemName }),
+        ...(data.printer && { printer: data.printer }),
+      };
+    }
 
     const updatedData = await itemModel.findOneAndUpdate(
       { code: id },
-      { $inc: { itemValue: data.itemValue } },
+      updateFields,
       { new: true }
     );
-
-
 
     if (!updatedData) {
       if (!data.itemName) {
