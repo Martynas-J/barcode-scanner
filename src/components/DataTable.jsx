@@ -14,7 +14,7 @@ const DataTable = ({ data }) => {
             {TABLEHEADER.map((header) => (
               <th
                 key={header}
-                className="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                className="py-2 px-2 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
               >
                 {header}
               </th>
@@ -39,7 +39,7 @@ const DataTable = ({ data }) => {
                 .map((value, index) => (
                   <td
                     key={index}
-                    className="py-2 px-4 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
+                    className="py-2 px-2 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                   >
                     {index === 2 ? (
                       <span

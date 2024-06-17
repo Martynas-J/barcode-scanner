@@ -62,11 +62,23 @@ const ScannerPage = () => {
   };
 
   const addHandler = (scannedCode) => {
-    saveResult(scannedCode, { itemValue: 1 }, mutate, "Pridėta", "Tokios prekės nėra");
+    saveResult(
+      scannedCode,
+      { itemValue: 1 },
+      mutate,
+      "Pridėta",
+      "Tokios prekės nėra"
+    );
   };
 
   const minusHandler = (scannedCode) => {
-    saveResult(scannedCode, { itemValue: -1 }, mutate, "Išimta", "Tokios prekės nėra");
+    saveResult(
+      scannedCode,
+      { itemValue: -1 },
+      mutate,
+      "Išimta",
+      "Tokios prekės nėra"
+    );
   };
 
   const addNewHandler = (scannedCode) => {
@@ -105,9 +117,11 @@ const ScannerPage = () => {
             <ButtonComponent onClick={() => minusHandler(scannedCode)}>
               Išimti
             </ButtonComponent>
-            <ButtonComponent onClick={() => addNewHandler(scannedCode)}>
-              Nauja
-            </ButtonComponent>
+            {!codeFromData && (
+              <ButtonComponent onClick={() => addNewHandler(scannedCode)}>
+                Nauja
+              </ButtonComponent>
+            )}
           </div>
         </div>
       )}
