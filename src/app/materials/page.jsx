@@ -5,7 +5,7 @@ import Loading from "@/components/Loading/Loading";
 import { FromDb } from "@/Functions/simpleFunctions";
 import {  useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchForm from "@/components/SearchForm";
 
 export default function Materials() {

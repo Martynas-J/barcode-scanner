@@ -6,8 +6,8 @@ const SearchForm = ({handleSearch}) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const searchHandler = () => {
-       // handleSearch(searchQuery)
-       console.log(searchQuery)
+        handleSearch(searchQuery)
+
     };
 
     return (
