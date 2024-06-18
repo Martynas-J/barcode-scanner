@@ -2,12 +2,11 @@
 import React, { useState } from 'react'
 import ButtonComponent from './ButtonComponent';
 
-const SearchForm = () => {
+const SearchForm = ({handleSearch}) => {
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleSearch = () => {
-        // Perform search action here
-        console.log('Searching for:', searchQuery);
+    const searchHandler = () => {
+        handleSearch(searchQuery)
     };
 
     return (
@@ -17,9 +16,9 @@ const SearchForm = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Search..."
+                placeholder="Paieška..."
             />
-            <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent onClick={searchHandler}>Paieška</ButtonComponent>
         </div>
     );
 };
