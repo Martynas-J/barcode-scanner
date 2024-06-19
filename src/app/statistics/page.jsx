@@ -58,6 +58,11 @@ const Statistics = () => {
             ))}
           </tbody>
         </table>
+        <div className="mt-4">
+        <Link className="text-center" href="/materials">
+          Atgal
+        </Link>
+      </div>
       </div>
     </div>
   )
