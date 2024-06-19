@@ -43,7 +43,7 @@ export default function Materials() {
     <main className="flex  flex-col items-center gap-5 pt-5">
       <h1 className="text-2xl font-bold">Esamos prekės <Link href="/statistics">📈</Link></h1>
       <SearchForm handleSearch={handleSearch} />
-      <div className="flex gap-5">
+      <div className="flex gap-5 justify-around">
         <Link
           className=" text-xl border rounded-lg bg-gray-300 px-4 py-2 hover:bg-gray-500"
           href="/scanner"
