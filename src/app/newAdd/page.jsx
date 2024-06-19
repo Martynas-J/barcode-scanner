@@ -25,7 +25,7 @@ const NewAdd = () => {
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
-    saveResult("saveStatistics", {user: userName, count:data.value })
+    saveResult("aaa", {user: userName, count:data.value })
     router.push("/materials");
   };
   if (isLoading) {
