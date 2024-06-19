@@ -12,7 +12,7 @@ const Statistics = () => {
     return <Loading />;
   }
 
-  result?.sort((a, b) => b.createdAt - a.createdAt);
+  result?.sort((a, b) => a.createdAt - b.createdAt);
 
   return (
     <div className="container mx-auto text-center">
