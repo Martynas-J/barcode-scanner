@@ -1,23 +1,35 @@
 import mongoose from "mongoose";
 
-const {Schema} = mongoose
+const { Schema } = mongoose;
 
-const statisticsSchema = new Schema({
+const statisticsSchema = new Schema(
+  {
     user: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     count: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
-    
-}, {timestamps: true})
+    action: {
+        type: String,
+        required: true,
+      },
+  },
+  {
+    timestamps: {
+      createdAt: true, 
+      updatedAt: false, 
+    },
+  }
+);
 
-let statisticsModel
+let statisticsModel;
 try {
-    statisticsModel = mongoose.model('Statistics')
+  statisticsModel = mongoose.model("Statistics");
 } catch (error) {
-    statisticsModel = mongoose.model('Statistics', statisticsSchema)
+  statisticsModel = mongoose.model("Statistics", statisticsSchema);
 }
-export default statisticsModel
+
+export default statisticsModel;

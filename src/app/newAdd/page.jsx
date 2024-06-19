@@ -18,14 +18,14 @@ const NewAdd = () => {
   const dataToEdit = searchParams.get("data");
   const parsedData = JSON.parse(dataToEdit);
   const onSubmit = (data) => {
-    // saveResult(
-    //   `saveResult/${parsedData ? parsedData.code : code}`,
-    //   { printer: data.printer, itemName: data.name, itemValue: data.value },
-    //   mutate,
-    //   parsedData ? "Redaguota" : "Pridėta nauja",
-    //   parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
-    // );
-    saveResult("saveStatistics", {user: userName, count:data.value },"", "", "")
+    saveResult(
+      `saveResult/${parsedData ? parsedData.code : code}`,
+      { printer: data.printer, itemName: data.name, itemValue: data.value },
+      mutate,
+      parsedData ? "Redaguota" : "Pridėta nauja",
+      parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
+    );
+    saveResult("saveStatistics", parsedData ? { user: userName, count: data.value - result.itemValue, acton: "Nauja" } : { user: userName, count: data.value, acton: "Nauja" })
     router.push("/materials");
   };
   if (isLoading) {

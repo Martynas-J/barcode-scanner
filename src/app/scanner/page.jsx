@@ -10,6 +10,7 @@ import { saveResult } from "@/components/SaveResults";
 import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/config/config";
+import { useSession } from "next-auth/react";
 
 // Dynamically import the BarcodeScanner to avoid server-side rendering issues
 const BarcodeScanner = dynamic(() => import("/src/components/BarcodeScanner"), {
@@ -22,6 +23,9 @@ const ScannerPage = () => {
   const [codeFromData, setCodeFromData] = useState(null);
   const [error, setError] = useState("");
   const { result, isLoading, mutate } = FromDb(`getResults`);
+
+  const { data } = useSession();
+  const userName = data?.user?.name;
 
   useEffect(() => {
     if (scannedCode) {
@@ -69,6 +73,7 @@ const ScannerPage = () => {
       "Pridėta",
       "Tokios prekės nėra"
     );
+    saveResult("saveStatistics", {user: userName, count:+1, acton:"Pridėta" })
   };
 
   const minusHandler = (scannedCode) => {
@@ -79,6 +84,7 @@ const ScannerPage = () => {
       "Išimta",
       "Tokios prekės nėra"
     );
+    saveResult("saveStatistics", {user: userName, count:-1, acton:"Išimta" })
   };
 
   const addNewHandler = (scannedCode) => {
