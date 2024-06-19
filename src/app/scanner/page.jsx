@@ -26,7 +26,8 @@ const ScannerPage = () => {
 
   const { data } = useSession();
   const userName = data?.user?.name;
-  const existingItem = result?.find(item => item.code === scannedCode?.code);
+  const existingItem = result?.find(item => item.code === scannedCode);
+
 
   useEffect(() => {
     if (scannedCode) {
@@ -74,7 +75,7 @@ const ScannerPage = () => {
       "Pridėta",
       "Tokios prekės nėra"
     );
-    saveResult("saveStatistics", {user: userName, model: existingItem.itemName, count:+1, action:"Pridėta" })
+    saveResult("saveStatistics", {user: userName, model: existingItem?.itemName, count:+1, action:"Pridėta" })
   };
 
   const minusHandler = (scannedCode) => {
@@ -85,7 +86,7 @@ const ScannerPage = () => {
       "Išimta",
       "Tokios prekės nėra"
     );
-    saveResult("saveStatistics", {user: userName, model: existingItem.itemName, count:-1, action:"Išimta" })
+    saveResult("saveStatistics", {user: userName, model: existingItem?.itemName, count:-1, action:"Išimta" })
   };
 
   const addNewHandler = (scannedCode) => {

@@ -6,7 +6,7 @@ import React from 'react'
 
 const Statistics = () => {
   const { result, isLoading, mutate } = FromDb(`getStatistics`);
-  console.log(result)
+  result?.sort((a, b) => a.createdAt - b.createdAt);
   return (
     <div className="container mx-auto text-center">
       <h1 className="text-2xl font-bold pt-4 pb-4">Statistika</h1>
