@@ -63,8 +63,7 @@ const ScannerPage = () => {
 
   const addHandler = (scannedCode) => {
     saveResult(
-      "saveResult",
-      scannedCode,
+      `saveResult/${scannedCode}`,
       { itemValue: 1 },
       mutate,
       "Pridėta",
@@ -74,8 +73,7 @@ const ScannerPage = () => {
 
   const minusHandler = (scannedCode) => {
     saveResult(
-      "saveResult",
-      scannedCode,
+      `saveResult/${scannedCode}`,
       { itemValue: -1 },
       mutate,
       "Išimta",

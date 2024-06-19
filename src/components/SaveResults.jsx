@@ -2,10 +2,10 @@ import { API_URL } from "@/config/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const saveResult = async (route, scannedCode, data, mutate, text, errorMsg) => {
+export const saveResult = async (route, data, mutate, text, errorMsg) => {
   console.log(route, scannedCode, data, mutate, text, errorMsg)
   try {
-    const response = await fetch(`${API_URL}/api/${route}/${scannedCode}`, {
+    const response = await fetch(`${API_URL}/api/${route}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
