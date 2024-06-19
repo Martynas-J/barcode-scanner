@@ -1,6 +1,7 @@
 "use client";
 import { FromDb } from '@/Functions/simpleFunctions';
 import { STATHEADER } from '@/config/config';
+import Link from 'next/link';
 import React from 'react'
 
 const Statistics = () => {
@@ -59,10 +60,10 @@ const Statistics = () => {
           </tbody>
         </table>
         <div className="mt-4">
-        <Link className="text-center" href="/materials">
-          Atgal
-        </Link>
-      </div>
+          <Link className="text-center" href="/materials">
+            Atgal
+          </Link>
+        </div>
       </div>
     </div>
   )
