@@ -31,6 +31,8 @@ const NewAdd = () => {
 
     if (parsedData) {
       console.log("Count" +count);
+      console.log("result" +result);
+
       const sum = data.value - result.itemValue;
       console.log("Sum" +sum);
       action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
