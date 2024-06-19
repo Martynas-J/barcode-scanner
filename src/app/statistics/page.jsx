@@ -12,7 +12,7 @@ const Statistics = () => {
     return <Loading />;
   }
 
-  result?.sort((a, b) => a.createdAt - b.createdAt);
+  const sortdate = result?.sort((a, b) => b.createdAt - a.createdAt);
 
   return (
     <div className="container mx-auto text-center">
@@ -32,7 +32,7 @@ const Statistics = () => {
             </tr>
           </thead>
           <tbody>
-            {result?.map((item) => (
+            {sortdate?.map((item) => (
               <tr
                 key={item._id}
                 className={`even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
