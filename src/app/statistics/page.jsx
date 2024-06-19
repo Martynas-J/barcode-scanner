@@ -1,22 +1,40 @@
 "use client";
 import { FromDb } from '@/Functions/simpleFunctions';
 import Loading from '@/components/Loading/Loading';
+import SearchForm from '@/components/SearchForm';
 import { STATHEADER } from '@/config/config';
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Statistics = () => {
   const { result, isLoading, mutate } = FromDb(`getStatistics`);
+  const [filteredResult, setFilteredResult] = useState([]);
+
+  useEffect(() => {
+    if (result) {
+      setFilteredResult(result);
+    }
+  }, [result]);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  const sortDate = result?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortDate = filteredResult?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  const handleSearch = (searchQuery) => {
+    const query = searchQuery.toLowerCase();
+    const filtered = result.filter(item =>
+      Object.values(item).some(value =>
+        value.toString().toLowerCase().includes(query)
+      )
+    );
+    setFilteredResult(filtered);
+  };
   return (
     <div className="container mx-auto text-center">
       <h1 className="text-2xl font-bold pt-4 pb-4">Statistika nuo 2024-06-19</h1>
+      <SearchForm handleSearch={handleSearch} />
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
