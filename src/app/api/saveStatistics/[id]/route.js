@@ -10,8 +10,8 @@ export const PATCH = async (request) => {
   try {
     await connect();
 
-    const newStatistics = new statisticsModel(data);
-    await newStatistics.save();
+    // const newStatistics = new statisticsModel(data);
+    // await newStatistics.save();
 
     return new NextResponse(`This has been created`, { status: 200 });
   } catch (err) {
