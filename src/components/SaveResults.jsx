@@ -14,9 +14,9 @@ export const saveResult = async (route, data, mutate, text, errorMsg) => {
     });
 
     if (response.ok) {
-      // if (typeof mutate === "function") {
-      //   mutate();
-      // }
+      if (typeof mutate === "function") {
+        mutate();
+      }
       text && toast.success(text);
       return response;
     } else {
