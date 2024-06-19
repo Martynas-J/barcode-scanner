@@ -4,7 +4,7 @@ import Loading from '@/components/Loading/Loading';
 import SearchForm from '@/components/SearchForm';
 import { STATHEADER } from '@/config/config';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Statistics = () => {
   const { result, isLoading, mutate } = FromDb(`getStatistics`);
