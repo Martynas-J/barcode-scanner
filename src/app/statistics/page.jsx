@@ -30,13 +30,13 @@ const Statistics = () => {
               className={`even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800`}
             >
               {Object.values(item)
-                .slice(1, 5)
+                .slice(1, 6)
                 .map((value, index) => (
                   <td
                     key={index}
                     className="py-2 px-2 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                   >
-                    {index === 1 ? (
+                    {index === 2 ? (
                       <span
                         className={`${value > 0 ? "text-green-500 font-bold": "text-red-500 font-bold"}`}
                       >{`${value} vnt.`}</span>
