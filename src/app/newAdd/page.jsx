@@ -17,16 +17,31 @@ const NewAdd = () => {
   const code = searchParams.get("code");
   const dataToEdit = searchParams.get("data");
   const parsedData = JSON.parse(dataToEdit);
-  const onSubmit = (data) => {
-    saveResult(
+  const onSubmit = async (data) => {
+    await saveResult(
       `saveResult/${parsedData ? parsedData.code : code}`,
       { printer: data.printer, itemName: data.name, itemValue: data.value },
       mutate,
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
-    const sum = data.value - result.itemValue;
-    saveResult("saveStatistics", parsedData ? { user: userName, count: sum, action: sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota" } : { user: userName, count: data.value, action: "Nauja" })
+
+    let action = "Nauja";
+    let count = data.value;
+
+    if (parsedData) {
+      console.log("Count" +count);
+      const sum = data.value - result.itemValue;
+      console.log("Sum" +sum);
+      action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
+      count = sum;
+    }
+
+    await saveResult(
+      "saveStatistics",
+      { user: userName, count, action }
+    );
+
     router.push("/materials");
   };
   if (isLoading) {

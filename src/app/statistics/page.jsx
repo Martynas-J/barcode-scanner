@@ -6,7 +6,10 @@ const Statistics = () => {
     const { result, isLoading, mutate } = FromDb(`getStatistics`);
     console.log(result)
   return (
-    <div>Statistics</div>
+    <div className="container mx-auto text-center">
+    <h1 className="text-2xl font-bold">Statistika</h1>
+    
+  </div>
   )
 }
 
