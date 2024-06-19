@@ -29,17 +29,18 @@ const NewAdd = () => {
     let action = "Nauja";
     let count = data.value;
     const existingItem = result?.find(item => item.code === parsedData?.code);
-   // let model = existingItem?.itemName;
+    let model = data.name;
 
     if (parsedData) {
-      const sum = data.value - existingItem.itemValue;
+      const sum = data.value - existingItem?.itemValue;
       action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
       count = sum;
+      model = existingItem.itemName;
     }
 
     await saveResult(
       "saveStatistics",
-      { user: userName, model: "test", count, action }
+      { user: userName, model, count, action }
     );
 
     router.push("/materials");
