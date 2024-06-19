@@ -42,7 +42,7 @@ const LoginComponent = () => {
         <p>{error && toast.error(error)}</p>
         <h1 className={styles.title}>{success ? success : "Sveiki sugryžę"}</h1>
         <h2 className={styles.subtitle}>
-          Reikia prisijungti kad matyti turinį.
+          Reikia prisijungti kad matyti turinį. 
         </h2>
 
         <form onSubmit={handleSubmit} className={styles.form}>

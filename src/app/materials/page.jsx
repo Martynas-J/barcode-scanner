@@ -41,7 +41,7 @@ export default function Materials() {
 
   return (
     <main className="flex  flex-col items-center gap-5 pt-5">
-      <h1 className="text-2xl font-bold">Esamos prekės</h1>
+      <h1 className="text-2xl font-bold">Esamos prekės <Link href="/statistics">📈</Link></h1>
       <SearchForm handleSearch={handleSearch}/>
       <DataTable data={filteredResult} />
       <Link
