@@ -73,7 +73,7 @@ const ScannerPage = () => {
       "Pridėta",
       "Tokios prekės nėra"
     );
-    saveResult("saveStatistics", {user: userName, count:+1, acton:"Pridėta" })
+    saveResult("saveStatistics", {user: userName, count:+1, action:"Pridėta" })
   };
 
   const minusHandler = (scannedCode) => {
@@ -84,7 +84,7 @@ const ScannerPage = () => {
       "Išimta",
       "Tokios prekės nėra"
     );
-    saveResult("saveStatistics", {user: userName, count:-1, acton:"Išimta" })
+    saveResult("saveStatistics", {user: userName, count:-1, action:"Išimta" })
   };
 
   const addNewHandler = (scannedCode) => {
