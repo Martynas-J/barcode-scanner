@@ -1,12 +1,19 @@
 "use client";
 import { FromDb } from '@/Functions/simpleFunctions';
+import Loading from '@/components/Loading/Loading';
 import { STATHEADER } from '@/config/config';
 import Link from 'next/link';
 import React from 'react'
 
 const Statistics = () => {
   const { result, isLoading, mutate } = FromDb(`getStatistics`);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   result?.sort((a, b) => b.createdAt - a.createdAt);
+
   return (
     <div className="container mx-auto text-center">
       <h1 className="text-2xl font-bold pt-4 pb-4">Statistika nuo 2024-06-19</h1>
