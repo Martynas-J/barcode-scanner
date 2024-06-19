@@ -29,7 +29,6 @@ const NewAdd = () => {
     let action = "Nauja";
     let count = data.value;
     const existingItem = result?.find(item => item.code === parsedData?.code);
-    let model = existingItem.itemName;
 
     if (parsedData) {
       const sum = data.value - existingItem.itemValue;
@@ -39,7 +38,7 @@ const NewAdd = () => {
 
     await saveResult(
       "saveStatistics",
-      { user: userName, model, count, action }
+      { user: userName, model: existingItem?.itemName, count, action }
     );
 
     router.push("/materials");
