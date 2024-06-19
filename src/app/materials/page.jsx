@@ -50,7 +50,7 @@ export default function Materials() {
         >
           Skenuoti
         </Link>
-        <DataTable data={filteredResult} />
+
 
         <div className="mt-5">
           <Link className="text-center" href="/#">
@@ -58,7 +58,7 @@ export default function Materials() {
           </Link>
         </div>
       </div>
-
+      <DataTable data={filteredResult} />
     </main>
   );
 }
