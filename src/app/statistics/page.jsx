@@ -9,7 +9,7 @@ const Statistics = () => {
   result?.sort((a, b) => b.createdAt - a.createdAt);
   return (
     <div className="container mx-auto text-center">
-      <h1 className="text-2xl font-bold pt-4 pb-4">Statistika</h1>
+      <h1 className="text-2xl font-bold pt-4 pb-4">Statistika nuo 2024-06-19</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
