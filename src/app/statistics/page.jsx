@@ -8,7 +8,7 @@ const Statistics = () => {
     console.log(result)
   return (
     <div className="container mx-auto text-center">
-    <h1 className="text-2xl font-bold">Statistika</h1>
+    <h1 className="text-2xl font-bold pb-2">Statistika</h1>
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white dark:bg-gray-800">
         <thead>
@@ -36,9 +36,9 @@ const Statistics = () => {
                     key={index}
                     className="py-2 px-2 border-b text-center border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                   >
-                    {index === 2 ? (
+                    {index === 1 ? (
                       <span
-                        className={`${value < 3 && "text-red-500 font-bold"}`}
+                        className={`${value > 0 ? "text-green-500 font-bold": "text-red-500 font-bold"}`}
                       >{`${value} vnt.`}</span>
                     ) : (
                       value

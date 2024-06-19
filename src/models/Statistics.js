@@ -8,6 +8,10 @@ const statisticsSchema = new Schema(
       type: String,
       required: true,
     },
+    model: {
+        type: String,
+        required: true,
+      },
     count: {
       type: Number,
       required: true,
