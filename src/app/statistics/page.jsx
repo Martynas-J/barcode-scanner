@@ -8,7 +8,7 @@ const Statistics = () => {
   console.log(result)
   return (
     <div className="container mx-auto text-center">
-      <h1 className="text-2xl font-bold pb-2">Statistika</h1>
+      <h1 className="text-2xl font-bold pt-4 pb-4">Statistika</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
@@ -45,6 +45,8 @@ const Statistics = () => {
                           year: 'numeric',
                           month: '2-digit',
                           day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit'
                         }).format(new Date(value))}</span>
                       ) : (
                         value
