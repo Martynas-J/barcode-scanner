@@ -4,7 +4,9 @@ import statisticsModel from "@/models/Statistics";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (request) => {
+  console.log("ateina");
   const data = await request.json();
+  console.log(data);
   try {
     await connect();
 

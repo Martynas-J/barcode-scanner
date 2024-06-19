@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 const NewAdd = () => {
   const { result, isLoading, mutate } = FromDb(`getResults`);
   const router = useRouter();
-  //const { user } = useSession();
+  const { user } = useSession();
 
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
@@ -25,7 +25,7 @@ const NewAdd = () => {
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
-    saveResult("saveStatistics", "", { count:data.value })
+    saveResult("saveStatistics", "", {user, count:data.value })
     router.push("/materials");
   };
   if (isLoading) {
