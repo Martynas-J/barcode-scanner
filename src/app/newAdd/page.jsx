@@ -11,6 +11,7 @@ const NewAdd = () => {
   const { result, isLoading, mutate } = FromDb(`getResults`);
   const router = useRouter();
   const { data } = useSession();
+  const userName = data?.user?.name;
 
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
@@ -24,7 +25,7 @@ const NewAdd = () => {
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
-    saveResult("saveStatistics", "", {user: data.user.name, count:data.value })
+    saveResult("saveStatistics", "", {user: userName, count:data.value })
     router.push("/materials");
   };
   if (isLoading) {
