@@ -2,9 +2,9 @@ import { API_URL } from "@/config/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const saveResult = async (scannedCode, data, mutate, text, errorMsg) => {
+export const saveResult = async (route, scannedCode, data, mutate, text, errorMsg) => {
   try {
-    const response = await fetch(`${API_URL}/api/saveResult/${scannedCode}`, {
+    const response = await fetch(`${API_URL}/api/${route}/${scannedCode}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -16,10 +16,10 @@ export const saveResult = async (scannedCode, data, mutate, text, errorMsg) => {
       if (typeof mutate === "function") {
         mutate();
       }
-      toast.success(text);
+      text && toast.success(text);
       return response;
     } else {
-      toast.error(errorMsg);
+      errorMsg && toast.error(errorMsg);
       console.error("Failed to save the result.");
       return response;
     }

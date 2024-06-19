@@ -5,10 +5,12 @@ import React, { Suspense } from "react";
 import { FromDb } from "@/Functions/simpleFunctions";
 import Loading from "@/components/Loading/Loading";
 import { saveResult } from "@/components/SaveResults";
+import { useSession } from "next-auth/react";
 
 const NewAdd = () => {
   const { result, isLoading, mutate } = FromDb(`getResults`);
   const router = useRouter();
+  const { user } = useSession();
 
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
@@ -16,12 +18,14 @@ const NewAdd = () => {
   const parsedData = JSON.parse(dataToEdit);
   const onSubmit = (data) => {
     saveResult(
+      "saveResult",
       parsedData ? parsedData.code : code,
       { printer: data.printer, itemName: data.name, itemValue: data.value },
       mutate,
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
+    saveResult("saveStatistics", "", {user, count:data.value })
     router.push("/materials");
   };
   if (isLoading) {

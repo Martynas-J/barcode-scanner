@@ -63,6 +63,7 @@ const ScannerPage = () => {
 
   const addHandler = (scannedCode) => {
     saveResult(
+      "saveResult",
       scannedCode,
       { itemValue: 1 },
       mutate,
@@ -73,6 +74,7 @@ const ScannerPage = () => {
 
   const minusHandler = (scannedCode) => {
     saveResult(
+      "saveResult",
       scannedCode,
       { itemValue: -1 },
       mutate,
