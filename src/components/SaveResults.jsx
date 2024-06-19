@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const saveResult = async (route, data, mutate, text, errorMsg) => {
-  console.log(route, data, mutate, text, errorMsg)
   try {
     const response = await fetch(`${API_URL}/api/${route}`, {
       method: "PATCH",

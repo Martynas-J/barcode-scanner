@@ -26,7 +26,7 @@ const NewAdd = () => {
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
     const sum = data.value - result.itemValue;
-    saveResult("saveStatistics", parsedData ? { user: userName, count: sum, action: sum > 0 ? "Pridėta" : "Išimta" } : { user: userName, count: data.value, action: "Nauja" })
+    saveResult("saveStatistics", parsedData ? { user: userName, count: sum, action: sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota" } : { user: userName, count: data.value, action: "Nauja" })
     router.push("/materials");
   };
   if (isLoading) {
