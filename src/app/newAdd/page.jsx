@@ -28,7 +28,7 @@ const NewAdd = () => {
 
     let action = "Nauja";
     let count = data.value;
-    const existingItem = result?.find(item => item.code === parsedData.code);
+    const existingItem = result?.find(item => item.code === parsedData?.code);
     let model = existingItem.itemName;
 
     if (parsedData) {
