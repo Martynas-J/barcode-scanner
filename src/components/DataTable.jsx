@@ -5,21 +5,22 @@ import Link from "next/link";
 import React from "react";
 
 const DataTable = ({ data }) => {
+  const TableClasDark = " py-2 px-2 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider";
   data?.sort((a, b) => a.itemValue - b.itemValue);
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto text-[10px]  sm:text-xs">
       <table className="min-w-full bg-white dark:bg-gray-800">
         <thead>
           <tr>
             {TABLEHEADER.map((header) => (
               <th
                 key={header}
-                className="py-2 px-2 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                className={TableClasDark}
               >
                 {header}
               </th>
             ))}
-            <th className="py-2 px-2 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 text-center dark:bg-gray-700  text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+            <th className={TableClasDark}>
               R
             </th>
           </tr>
@@ -28,11 +29,10 @@ const DataTable = ({ data }) => {
           {data?.map((item) => (
             <tr
               key={item.code}
-              className={`${
-                item.itemValue < 1
+              className={`${item.itemValue < 1
                   ? "bg-green-300"
                   : "even:bg-gray-50 dark:even:bg-gray-700 odd:bg-white dark:odd:bg-gray-800"
-              }`}
+                }`}
             >
               {Object.values(item)
                 .slice(1, 4)
