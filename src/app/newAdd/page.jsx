@@ -26,9 +26,7 @@ const NewAdd = () => {
         parsedData ? "Redaguota" : "Pridėta nauja",
         parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
       );
-      console.log(result1);
       if (!result1.ok) {
-        console.error("Pirmasis saveResult iškvietimas nepavyko.");
         return false;
       }
 
@@ -54,7 +52,6 @@ const NewAdd = () => {
       });
 
       if (!result2.ok) {
-        console.error("Antrasis saveResult iškvietimas nepavyko.");
         return false;
       }
 
