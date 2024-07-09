@@ -18,46 +18,33 @@ const NewAdd = () => {
   const dataToEdit = searchParams.get("data");
   const parsedData = JSON.parse(dataToEdit);
   const onSubmit = async (data) => {
-    try {
-      const result1 = await saveResult(
-        `saveResult/${parsedData ? parsedData.code : code}`,
-        { printer: data.printer, itemName: data.name, itemValue: data.value },
-        "",
-        parsedData ? "Redaguota" : "Pridėta nauja",
-        parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
-      );
+    await saveResult(
+      `saveResult/${parsedData ? parsedData.code : code}`,
+      { printer: data.printer, itemName: data.name, itemValue: data.value },
+      mutate,
+      parsedData ? "Redaguota" : "Pridėta nauja",
+      parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
+    );
 
-      if (!result1.success) {
-        return;
-      }
+    let action = "Nauja";
+    let count = data.value;
+    const existingItem = result?.find(item => item.code === parsedData?.code);
+    let model = data.name;
 
-      let action = "Nauja";
-      let count = data.value;
-      const existingItem = result?.find(
-        (item) => item.code === parsedData?.code
-      );
-      let model = data.name;
-
-      if (parsedData) {
-        const sum = data.value - existingItem?.itemValue;
-        action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
-        count = sum;
-        model = existingItem.itemName;
-      }
-
-      router.push("/materials");
-      await saveResult("saveStatistics", {
-        user: userName,
-        model,
-        count,
-        action,
-      });
-
-    } catch (error) {
-      console.error("Error in onSubmit:", error);
+    if (parsedData) {
+      const sum = data.value - existingItem?.itemValue;
+      action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
+      count = sum;
+      model = existingItem.itemName;
     }
-  };
 
+    await saveResult(
+      "saveStatistics",
+      { user: userName, model, count, action }
+    );
+
+    router.push("/materials");
+  };
   if (isLoading) {
     return <Loading />;
   }
