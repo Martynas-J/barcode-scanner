@@ -19,10 +19,14 @@ const Form = ({ onSubmit, parsedData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ printer, name, value: parseInt(value) });
-    setPrinter('');
-    setName('');
-    setValue('');
+    onSubmit({ printer, name, value: parseInt(value) })
+      .then(success => {
+        if (success) {
+          setPrinter('');
+          setName('');
+          setValue('');
+        }
+      });
   };
 
   const inputClass = " bg-gray-200 mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm";
