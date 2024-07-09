@@ -43,14 +43,12 @@ const onSubmit = async (data) => {
       model = existingItem.itemName;
     }
 
-    const result2 = await saveResult(
-      "saveStatistics",
-      { user: userName, model, count, action }
-    );
-
-    if (!result2.success) {
-      return; // Exit if the second saveResult call failed
-    }
+    await saveResult("saveStatistics", {
+      user: userName,
+      model,
+      count,
+      action,
+    });
 
     router.push("/materials");
   } catch (error) {
