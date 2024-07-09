@@ -17,44 +17,53 @@ const NewAdd = () => {
   const code = searchParams.get("code");
   const dataToEdit = searchParams.get("data");
   const parsedData = JSON.parse(dataToEdit);
-const onSubmit = async (data) => {
-  try {
-    const result1 = await saveResult(
-      `saveResult/${parsedData ? parsedData.code : code}`,
-      { printer: data.printer, itemName: data.name, itemValue: data.value },
-      mutate,
-      parsedData ? "Redaguota" : "Pridėta nauja",
-      parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
-    );
+  const onSubmit = async (data) => {
+    try {
+      const result1 = await saveResult(
+        `saveResult/${parsedData ? parsedData.code : code}`,
+        { printer: data.printer, itemName: data.name, itemValue: data.value },
+        "",
+        parsedData ? "Redaguota" : "Pridėta nauja",
+        parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
+      );
+      console.log(result1);
+      if (!result1.ok) {
+        console.error("Pirmasis saveResult iškvietimas nepavyko.");
+        return false;
+      }
 
-    if (!result1.success) {
-      return; // Exit if the first saveResult call failed
+      let action = "Nauja";
+      let count = data.value;
+      const existingItem = result?.find(
+        (item) => item.code === parsedData?.code
+      );
+      let model = data.name;
+
+      if (parsedData) {
+        const sum = data.value - existingItem?.itemValue;
+        action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
+        count = sum;
+        model = existingItem.itemName;
+      }
+
+      const result2 = await saveResult("saveStatistics", {
+        user: userName,
+        model,
+        count,
+        action,
+      });
+
+      if (!result2.ok) {
+        console.error("Antrasis saveResult iškvietimas nepavyko.");
+        return false;
+      }
+
+      router.push("/materials");
+      return true;
+    } catch (error) {
+      console.error("Error in onSubmit:", error);
     }
-
-    let action = "Nauja";
-    let count = data.value;
-    const existingItem = result?.find(item => item.code === parsedData?.code);
-    let model = data.name;
-
-    if (parsedData) {
-      const sum = data.value - existingItem?.itemValue;
-      action = sum > 0 ? "Pridėta" : sum < 0 ? "Išimta" : "Redaguota";
-      count = sum;
-      model = existingItem.itemName;
-    }
-
-    await saveResult("saveStatistics", {
-      user: userName,
-      model,
-      count,
-      action,
-    });
-
-    router.push("/materials");
-  } catch (error) {
-    console.error("Error in onSubmit:", error);
-  }
-};
+  };
 
   if (isLoading) {
     return <Loading />;
