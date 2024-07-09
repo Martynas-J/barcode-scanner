@@ -17,14 +17,19 @@ const NewAdd = () => {
   const code = searchParams.get("code");
   const dataToEdit = searchParams.get("data");
   const parsedData = JSON.parse(dataToEdit);
-  const onSubmit = async (data) => {
-    await saveResult(
+const onSubmit = async (data) => {
+  try {
+    const result1 = await saveResult(
       `saveResult/${parsedData ? parsedData.code : code}`,
       { printer: data.printer, itemName: data.name, itemValue: data.value },
       mutate,
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
+
+    if (!result1.success) {
+      return; // Exit if the first saveResult call failed
+    }
 
     let action = "Nauja";
     let count = data.value;
@@ -38,13 +43,21 @@ const NewAdd = () => {
       model = existingItem.itemName;
     }
 
-    await saveResult(
+    const result2 = await saveResult(
       "saveStatistics",
       { user: userName, model, count, action }
     );
 
+    if (!result2.success) {
+      return; // Exit if the second saveResult call failed
+    }
+
     router.push("/materials");
-  };
+  } catch (error) {
+    console.error("Error in onSubmit:", error);
+  }
+};
+
   if (isLoading) {
     return <Loading />;
   }
