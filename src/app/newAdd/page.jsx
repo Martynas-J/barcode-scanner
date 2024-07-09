@@ -22,7 +22,7 @@ const onSubmit = async (data) => {
     const result1 = await saveResult(
       `saveResult/${parsedData ? parsedData.code : code}`,
       { printer: data.printer, itemName: data.name, itemValue: data.value },
-      mutate,
+      "",
       parsedData ? "Redaguota" : "Pridėta nauja",
       parsedData ? "Klaida redaguojant" : "Pavadinimas jau naudojamas"
     );
