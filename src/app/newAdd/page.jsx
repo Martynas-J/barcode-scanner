@@ -46,15 +46,13 @@ const NewAdd = () => {
       }
 
       router.push("/materials");
-      const result2 = await saveResult("saveStatistics", {
+      await saveResult("saveStatistics", {
         user: userName,
         model,
         count,
         action,
       });
-      if (!result2.success) {
-        return; // Exit if the second saveResult call failed
-      }
+
     } catch (error) {
       console.error("Error in onSubmit:", error);
     }
