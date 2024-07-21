@@ -1,13 +1,11 @@
-"use client"
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import ButtonComponent from './ButtonComponent';
 
-const SearchForm = ({handleSearch}) => {
+const SearchForm = ({ handleSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const searchHandler = () => {
-        handleSearch(searchQuery)
-
+        handleSearch(searchQuery.trim());
     };
 
     return (
@@ -24,4 +22,4 @@ const SearchForm = ({handleSearch}) => {
     );
 };
 
-export default SearchForm
+export default SearchForm;

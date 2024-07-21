@@ -55,7 +55,7 @@ const NewAdd = () => {
         return false;
       }
 
-      router.push("/materials");
+      router.push("/#");
       return true;
     } catch (error) {
       console.error("Error in onSubmit:", error);

@@ -1,10 +1,10 @@
 "use client";
-import { FromDb } from '@/Functions/simpleFunctions';
-import Loading from '@/components/Loading/Loading';
-import SearchForm from '@/components/SearchForm';
-import { STATHEADER } from '@/config/config';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
+import { FromDb } from "@/Functions/simpleFunctions";
+import Loading from "@/components/Loading/Loading";
+import SearchForm from "@/components/SearchForm";
+import { STATHEADER } from "@/config/config";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const Statistics = () => {
   const { result, isLoading, mutate } = FromDb(`getStatistics`);
@@ -20,12 +20,14 @@ const Statistics = () => {
     return <Loading />;
   }
 
-  const sortDate = filteredResult?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortDate = filteredResult?.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   const handleSearch = (searchQuery) => {
     const query = searchQuery.toLowerCase();
-    const filtered = result.filter(item =>
-      Object.values(item).some(value =>
+    const filtered = result.filter((item) =>
+      Object.values(item).some((value) =>
         value.toString().toLowerCase().includes(query)
       )
     );
@@ -33,8 +35,15 @@ const Statistics = () => {
   };
   return (
     <div className="container mx-auto text-center">
-      <h1 className="text-2xl font-bold pt-4 pb-4">Statistika nuo 2024-06-19</h1>
+      <h1 className="text-2xl font-bold pt-4 pb-4">
+        Statistika nuo 2024-06-19
+      </h1>
       <SearchForm handleSearch={handleSearch} />
+      <div className="mt-4">
+        <Link className="text-center" href="/#">
+          Atgal
+        </Link>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
@@ -64,20 +73,25 @@ const Statistics = () => {
                     >
                       {index === 2 ? (
                         <span
-                          className={`${value > 0 ? "text-green-500 font-bold" : "text-red-500 font-bold"}`}
+                          className={`${
+                            value > 0
+                              ? "text-green-500 font-bold"
+                              : "text-red-500 font-bold"
+                          }`}
                         >{`${value} vnt.`}</span>
                       ) : index === 4 ? (
-                        <span>{new Intl.DateTimeFormat('lt-LT', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        }).format(new Date(value))}</span>
+                        <span>
+                          {new Intl.DateTimeFormat("lt-LT", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }).format(new Date(value))}
+                        </span>
                       ) : (
                         value
                       )}
-
                     </td>
                   ))}
               </tr>
@@ -85,13 +99,13 @@ const Statistics = () => {
           </tbody>
         </table>
         <div className="mt-4">
-          <Link className="text-center" href="/materials">
+          <Link className="text-center" href="/#">
             Atgal
           </Link>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Statistics
+export default Statistics;
