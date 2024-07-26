@@ -9,7 +9,6 @@ const Form = ({ onSubmit, parsedData }) => {
   const [name, setName] = useState('');
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
-  console.log(parsedData);
   useEffect(() => {
     if (parsedData) {
       setPrinter(parsedData.printer || '');
